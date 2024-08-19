@@ -38,6 +38,7 @@ app.listen(port, () => {
 app.post('/api/createCustomer',upload.single('avatar'),async (req,res)=>{
     try{
         const { name, phone, email } = req.body
+        console.log('name, phone, email', name, phone, email)
         const avatar = req.file ? `/uploads/${req.file.filename}` : null;
         const checkCustomer = await Customer.findOne({
             phone: phone,
@@ -64,7 +65,7 @@ app.post('/api/createCustomer',upload.single('avatar'),async (req,res)=>{
     }catch (err){ 
         res.status(500).json({
             status: 'Error',
-            message: "Server error" 
+            message: "server lỗi" 
         });
 
     }
