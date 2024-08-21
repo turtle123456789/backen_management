@@ -1,17 +1,22 @@
-const mongoose = require('mongoose')
-const userSchema = new mongoose.Schema(
-    {
-        name: { type: String },
-        email: { type: String, required: true, unique: true },
-        isAdmin: { type: Boolean, default: false, required: true },
-        phone: { type: Number },
-        address: { type: String },
-        avatar: { type: String },
+const mongoose = require('mongoose');
 
-    },
-    {
-        timestamps: true
-    }
-);
-const Customer = mongoose.model("Customer", userSchema);
-module.exports = Customer;  
+const customerSchema = new mongoose.Schema({
+    name: { type: String },
+    phone: { type: String, required: true, unique: true },
+    debt: { type: String },
+    loan: { type: String },
+    interestRate: { type: String },
+    serviceFee: { type: String },
+    exemption: { type: String },
+    amountPaid: { type: String },
+    status: { type: String, default: 'Pending' },
+    loanDate: { type: String },
+    paymentTerm: { type: String },
+    isAdmin: { type: Boolean, default:false }
+}, {
+    timestamps: true
+});
+
+const Customer = mongoose.model("Customer", customerSchema);
+
+module.exports = Customer;
