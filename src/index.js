@@ -38,7 +38,7 @@ app.post('/api/createCustomer', async (req, res) => {
     try {
         const {
             name, phone, debt, loan, interestRate, serviceFee,
-            exemption, amountPaid, status, loanDate, paymentTerm,isAdmin
+            exemption, amountPaid, status, loanDate, paymentTerm,isAdmin,note
         } = req.body;
         if (!isAdmin) {
             return res.status(403).json({
@@ -48,7 +48,7 @@ app.post('/api/createCustomer', async (req, res) => {
         }
         console.log('Received data:', {
             name, phone, debt, loan, interestRate, serviceFee,
-            exemption, amountPaid, status, loanDate, paymentTerm
+            exemption, amountPaid, status, loanDate, paymentTerm,note
         });
         const checkCustomer = await Customer.findOne({ phone });
             console.log('Existing customer:', checkCustomer);
@@ -62,7 +62,7 @@ app.post('/api/createCustomer', async (req, res) => {
 
         const createdCustomer = await Customer.create({
             name, phone, debt, loan, interestRate, serviceFee,
-            exemption, amountPaid, status, loanDate, paymentTerm
+            exemption, amountPaid, status, loanDate, paymentTerm,note
         });
 
         res.status(201).json({
@@ -105,7 +105,7 @@ app.put('/api/editCustomer/:id', async (req, res) => {
 
         const {
             name, phone, debt, loan, interestRate, serviceFee,
-            exemption, amountPaid, status, loanDate, paymentTerm
+            exemption, amountPaid, status, loanDate, paymentTerm,note
         } = req.body;
 
         const { id } = req.params;
@@ -118,7 +118,7 @@ app.put('/api/editCustomer/:id', async (req, res) => {
         }
         const updatedCustomer = await Customer.findByIdAndUpdate(id, {
             name, phone, debt, loan, interestRate, serviceFee,
-            exemption, amountPaid, status, loanDate, paymentTerm
+            exemption, amountPaid, status, loanDate, paymentTerm,note
         }, { new: true });
 
         res.status(200).json({
