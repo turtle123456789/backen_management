@@ -12,6 +12,7 @@ const customerSchema = new mongoose.Schema({
     status: { type: String, default: 'Pending' },
     loanDate: { type: String },
     paymentTerm: { type: String },
+    citizenCard: { type: String },
     note: { type: String },
     isAdmin: { type: Boolean, default:false }
 }, {
